@@ -1,6 +1,8 @@
+#include "Bot.h"
+
 #include <iostream>
 #include <string>
-#include "bottink.h"
+
 using namespace std;
 
 Bot::Bot(){
@@ -9,7 +11,6 @@ Bot::Bot(){
 
 Bot::Bot(string name){
     setName(name);
-
 }
 
 string Bot::getName(){
@@ -22,4 +23,8 @@ void Bot::setName(string n){
 
 void Bot::showName(){
     cout << getName();
+}
+
+Bot::~Bot(){
+    cout << "\nBot Destroy";
 }

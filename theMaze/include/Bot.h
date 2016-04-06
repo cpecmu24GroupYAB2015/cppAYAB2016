@@ -1,5 +1,5 @@
-#ifndef BOTTHINK_H
-#define BOTTHINK_H
+#ifndef BOT_H
+#define BOT_H
 #include <string>
 using namespace std;
 
@@ -16,5 +16,8 @@ public:
     void getPos();
     void setName(string);
     void showName();
+
+    ~Bot();
 };
-#endif // BOTTHINK_H
+
+#endif // BOT_H
