@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1459940983 source:c:\users\ather\documents\github\cppayab2016\themaze\main.cpp
+	<iostream>
+	"bottink.h"
+
+1459941114 c:\users\ather\documents\github\cppayab2016\themaze\bottink.h
+	<string>
+
+1459941079 source:c:\users\ather\documents\github\cppayab2016\themaze\bottink.cpp
+	<iostream>
+	<string>
+	"bottink.h"
+

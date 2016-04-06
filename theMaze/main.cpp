@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include "bottink.h"
 int main(){
-    std::cout << "Hello world";
+    Bot bot("Enermy1");
+    bot.showName();
 }
