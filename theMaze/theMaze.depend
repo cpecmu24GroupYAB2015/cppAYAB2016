@@ -1,8 +1,12 @@
 # depslib dependency file v1.0
-1459941649 source:c:\users\ather\documents\github\cppayab2016\themaze\main.cpp
-	<iostream>
+1459942179 source:c:\users\ather\documents\github\cppayab2016\themaze\main.cpp
 	"bot.h"
 
-1459941734 c:\users\ather\documents\github\cppayab2016\themaze\include\bot.h
+1459942152 c:\users\ather\documents\github\cppayab2016\themaze\include\bot.h
 	<string>
+	<iostream>
+	<string>
+
+1459942148 source:c:\users\ather\documents\github\cppayab2016\themaze\src\bot.cpp
+	"Bot.h"
 

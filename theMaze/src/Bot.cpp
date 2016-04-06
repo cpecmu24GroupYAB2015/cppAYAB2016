@@ -1,10 +1,5 @@
 #include "Bot.h"
 
-#include <iostream>
-#include <string>
-
-using namespace std;
-
 Bot::Bot(){
     setName("default");
 }

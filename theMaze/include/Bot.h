@@ -1,5 +1,8 @@
 #ifndef BOT_H
 #define BOT_H
+
+#include <string>
+#include <iostream>
 #include <string>
 using namespace std;
 
