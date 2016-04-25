@@ -46,17 +46,7 @@ int MapGen::randBoxSize() {
 int MapGen::randPos(int posMax) {
     return 1+rand()%(posMax);
 }
-void MapGen::writeBoxLine(int **t, int x1, int y1, int w, int h, int sm[]) {
-    for(int i=x1-1; i<x1+h-1; i++) {
-        for(int j=y1-1; j<y1+w-1; j++ ) {
-            t[i][j] = 8;
-            if(t[i+1][j]==1||t[i][j+1]==1||t[i-1][j]==1||t[i][j-1]==1) {
-                t[i][j] = 7;
-            }
-        }
-    }
-    return;
-}
+
 
 void MapGen::playerRes(int **t, int sm[], int p) {
     int posx = 1;
@@ -72,9 +62,22 @@ void MapGen::playerRes(int **t, int sm[], int p) {
     }
 }
 
+void MapGen::writeBoxLine(int **t, int x1, int y1, int w, int h, int sm[]) {
+    for(int i=x1; i<x1+h-2; i++) {
+        for(int j=y1; j<y1+w-1; j++ ) {
+            t[i][j] = 8;
+            if(t[i+1][j]==1||t[i][j+1]==1||t[i-1][j]==1||t[i][j-1]==1) {
+                t[i][j] = 7;
+            }
+        }
+    }
+    return;
+}
+
 void MapGen::makePattBox(int **t, int sm[]) {
     int MaxSize;
     int numx=0,numy=0;
+
     if(sm[0]*sm[1] > 20) {
         numx = sm[0]/4;
         numy = sm[1]/4;
@@ -83,8 +86,9 @@ void MapGen::makePattBox(int **t, int sm[]) {
         MaxSize = 4;
     }
 
-    for(int i=2; i<sm[0]-2; i+=MaxSize) {
-        for(int j=2; j<sm[1]; j+=MaxSize) {
+    for(int i=2; i<sm[0]-2; i+=MaxSize-2) {
+    cout << MaxSize << endl;
+        for(int j=2; j<sm[1]-2; j+=MaxSize-1) {
             writeBoxLine(t, i,j, MaxSize-1, MaxSize-1, sm);
         }
     }
@@ -112,22 +116,25 @@ void MapGen::drawBorder(int **t, int sm[]) {
         for(int j=0; j<sm[1]; j++)
             if(i==0||i==sm[0]-1 || j==0 || j==sm[1]-1) {
                 t[i][j] = 3;
-            }
+        }
     }
+    int n=rand()%sm[0];
+    t[n][0] = 7;
+    t[n][sm[1]-1] = 7;
 
 }
 
 MapGen::MapGen(){
     srand(time(0));
     int sm[2] = {0,0};
-    sm[0] = config::MapSizeX;
-    sm[1] = config::MapSizeY;
+    sm[1] = config::MapSizeX;
+    sm[0] = config::MapSizeY;
 
     int **t=new int*[sm[0]];
     initialze(t, sm);
 
 
-    makePattBox(t, sm);
+    makePattBox(t, sm);cout << "genCom";
     playerRes(t, sm, 5);
     playerRes(t, sm, 2);
     playerRes(t, sm, 2);
@@ -148,4 +155,5 @@ MapGen::MapGen(){
     drawBorder(t, sm);
     writeFile(t, sm);
     showMaze(t, sm);
+
 }

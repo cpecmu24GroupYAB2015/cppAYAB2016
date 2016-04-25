@@ -8,10 +8,6 @@
 #include "MapGen.h"
 
 int main() {
-
-    std::cout << (config::MapSizeX);
-    MapGen emap;
-
     edy::core::StateManager app;
     app.pushTop(new edy::state::MenuState);
     app.gameRun();

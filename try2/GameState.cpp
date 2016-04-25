@@ -50,6 +50,7 @@ bool GameState::loadMap() {
 
 void GameState::run(core::PointerPack& pack) {
     //first time run() call inits:
+    float scoreY = (500*config::MapSizeY)/31;
     if(!mPack) {
         mPack=&pack;
         mapOk=loadMap();
@@ -60,7 +61,7 @@ void GameState::run(core::PointerPack& pack) {
         lives.setCharacterSize(32);
         score.setCharacterSize(32);
         lives.setPosition(0.f,500.f);
-        score.setPosition(80.f,500.f);
+        score.setPosition(80.f,scoreY);
     }
     sf::Time delta(sf::seconds(1.f/60.f)),stock;
     sf::Clock clock;

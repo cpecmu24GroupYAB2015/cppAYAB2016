@@ -97,7 +97,6 @@ bool PacEngine::loadMap(const std::string& path) {
     std::ifstream file(path.c_str());
     if(!file.is_open()) return false;
     int ghostpos=0;
-
     for(int y=0; y<config::MapSizeY; ++y) for(int x=0; x<config::MapSizeX; ++x) {
             if(file.eof()) return false;
             int current;
@@ -124,7 +123,7 @@ void PacEngine::update() {
         mMap[cherryPos.x][cherryPos.y]=Empty;
     }
     if(mCherryCountDown<=-60*10) {
-        cherryPos=sf::Vector2i(rand()%(config::MapSizeX),rand()%config::MapSizeY);
+        cherryPos=sf::Vector2i(rand()%config::MapSizeX,rand()%config::MapSizeY);
         if(mMap[cherryPos.x][cherryPos.y]==Empty) {
             mCherryCountDown=10*60;
             mMap[cherryPos.x][cherryPos.y]=Cherry;
@@ -152,15 +151,15 @@ void PacEngine::makeWallsMap(sf::RenderTarget& target) {
     arr[1].color=sf::Color::Blue;
     arr[2].color=sf::Color::Blue;
     arr[3].color=sf::Color::Blue;
-    for(int x=0; x<(config::MapSizeX)-1; ++x) {
+    for(int x=0; x<config::MapSizeX-1; ++x) {
         if((mMap[x][0]==Wall)&&(mMap[x+1][0]==Wall)) drawHorizontalLine(target,x,x+1,0);
         if((mMap[x][config::MapSizeY-1]==Wall)&&(mMap[x+1][config::MapSizeY-1]==Wall)) drawHorizontalLine(target,x,x+1,config::MapSizeY-1);
     }
     for(int y=0; y<config::MapSizeY-1; ++y) {
         if((mMap[0][y]==Wall)&&(mMap[0][y+1]==Wall)) drawVerticalLine(target,y,y+1,0);
-        if((mMap[(config::MapSizeX)-1][y]==Wall)&&(mMap[(config::MapSizeX)-1][y+1]==Wall)) drawVerticalLine(target,y,y+1,(config::MapSizeX)-1);
+        if((mMap[config::MapSizeX-1][y]==Wall)&&(mMap[config::MapSizeX-1][y+1]==Wall)) drawVerticalLine(target,y,y+1,config::MapSizeX-1);
     }
-    for(int x=1; x<(config::MapSizeX)-1; ++x) for(int y=1; y<config::MapSizeY-1; ++y) {
+    for(int x=1; x<config::MapSizeX-1; ++x) for(int y=1; y<config::MapSizeY-1; ++y) {
             if(mMap[x][y]==Wall) {
                 if(mMap[x-1][y]==Wall) drawHorizontalLine(target,x-1,x,y);
                 if(mMap[x+1][y]==Wall) drawHorizontalLine(target,x+1,x,y);
@@ -171,8 +170,8 @@ void PacEngine::makeWallsMap(sf::RenderTarget& target) {
 }
 void PacEngine::updatePac() {
     //std::cout<<guys[0].position.x<<" "<<guys[0].position.y<<"\n";
-    guys[0].position.x+=16*(config::MapSizeX);//as below, to avoid problems with negative numbers modulos
-    guys[0].position.x%=16*(config::MapSizeX);//for tunnel purposes
+    guys[0].position.x+=16*config::MapSizeX;//as below, to avoid problems with negative numbers modulos
+    guys[0].position.x%=16*config::MapSizeX;//for tunnel purposes
     sf::Vector2i update=guys[Pac].getVectorFromDirection();
     int i;
     for(i=0; i<guys[Pac].speed; ++i) {
@@ -251,15 +250,15 @@ int PacEngine::fetchTileAt(sf::Vector2i pos,sf::Vector2i off) {
     int x=pos.x+off.x;
     int y=pos.y+off.y;
     //tunnel special case
-    if(y==fitBetween(0,y,config::MapSizeY-1)&&(x==-1||x==(config::MapSizeX))&&mMap[fitBetween(0,x,(config::MapSizeX)-1)][y]==Tunnel)
+    if(y==fitBetween(0,y,config::MapSizeY-1)&&(x==-1||x==config::MapSizeX)&&mMap[fitBetween(0,x,config::MapSizeX-1)][y]==Tunnel)
         return Empty;
     //do not drive out of boundaries
-    if(y!=fitBetween(0,y,config::MapSizeY-1)||x!=fitBetween(0,x,(config::MapSizeX)-1)) return Wall;
+    if(y!=fitBetween(0,y,config::MapSizeY-1)||x!=fitBetween(0,x,config::MapSizeX-1)) return Wall;
     return mMap[x][y];
 }
 void PacEngine::checkPills() {
     int tmp=0;
-    for(int y=0; y<config::MapSizeY; ++y) for(int x=0; x<(config::MapSizeX); ++x) {
+    for(int y=0; y<config::MapSizeY; ++y) for(int x=0; x<config::MapSizeX; ++x) {
             if(mMap[x][y]==Pill)++tmp;
         }
     if(tmp==0) mEventsList.push_back(PacEvent(EventType::PillsExhausted,0));
@@ -295,11 +294,11 @@ sf::Vector2i PacEngine::getTarg(int who) {
         case Blinky:
             return guys[Blinky].scared>0?sf::Vector2i(0,0):startPos[0]/16;// /16 to get node
         case Inky:
-            return guys[Inky].scared>0?sf::Vector2i((config::MapSizeX),0):startPos[1]/16;
+            return guys[Inky].scared>0?sf::Vector2i(config::MapSizeX,0):startPos[1]/16;
         case Pinky:
             return guys[Pinky].scared>0?sf::Vector2i(0,config::MapSizeY):startPos[2]/16;
         case Clyde:
-            return guys[Clyde].scared>0?sf::Vector2i((config::MapSizeX),config::MapSizeY):startPos[3]/16;//more = escape, less = respawn
+            return guys[Clyde].scared>0?sf::Vector2i(config::MapSizeX,config::MapSizeY):startPos[3]/16;//more = escape, less = respawn
         }
     }
     if(who==Inky) {
@@ -321,7 +320,7 @@ sf::Vector2i PacEngine::getTarg(int who) {
     case Pinky:
         return guys[Pac].getNode()+2*guys[Pac].getVectorFromDirection();
     case Clyde:
-        return ClydeChase(guys[Pac],guys[Clyde])?guys[Pac].getNode():sf::Vector2i((config::MapSizeX),config::MapSizeY);
+        return ClydeChase(guys[Pac],guys[Clyde])?guys[Pac].getNode():sf::Vector2i(config::MapSizeX,config::MapSizeY);
     }
     return sf::Vector2i();//default, shouldnt ever happen, silences vc++ unreasonable complains
 }
