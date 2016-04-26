@@ -14,10 +14,10 @@ bool enterable(unsigned char number) {
 }
 void drawHorizontalLine(sf::RenderTarget& rt,int x1,int x2,int y) {
     sf::Vertex arr[4];
-    arr[0].color=sf::Color::Blue;
-    arr[1].color=sf::Color::Blue;
-    arr[2].color=sf::Color::Blue;
-    arr[3].color=sf::Color::Blue;
+    arr[0].color=sf::Color(255,0,102);
+    arr[1].color=sf::Color(255,0,102);
+    arr[2].color=sf::Color(255,0,102);
+    arr[3].color=sf::Color(255,0,102);
     arr[0].position=sf::Vector2f(16.f*(x1+0.5f),16.f*(y+0.5f)-1.5f);
     arr[1].position=sf::Vector2f(16.f*(x1+0.5f),16.f*(y+0.5f)+1.5f);
     arr[2].position=sf::Vector2f(16.f*(x2+0.5f),16.f*(y+0.5f)+1.5f);
@@ -26,10 +26,10 @@ void drawHorizontalLine(sf::RenderTarget& rt,int x1,int x2,int y) {
 }
 void drawVerticalLine(sf::RenderTarget& rt,int y1,int y2,int x) {
     sf::Vertex arr[4];
-    arr[0].color=sf::Color::Blue;
-    arr[1].color=sf::Color::Blue;
-    arr[2].color=sf::Color::Blue;
-    arr[3].color=sf::Color::Blue;
+    arr[0].color=sf::Color(255,0,102);
+    arr[1].color=sf::Color(255,0,102);
+    arr[2].color=sf::Color(255,0,102);
+    arr[3].color=sf::Color(255,0,102);
     arr[0].position=sf::Vector2f(16.f*(x+0.5f)-1.5f,16.f*(y1+0.5f));
     arr[1].position=sf::Vector2f(16.f*(x+0.5f)+1.5f,16.f*(y1+0.5f));
     arr[2].position=sf::Vector2f(16.f*(x+0.5f)+1.5f,16.f*(y2+0.5f));
@@ -75,6 +75,7 @@ namespace pac {
 PacEngine::PacEngine():mLives(3),mCherryCountDown(0) {
 
 }
+
 sf::Vector2f PacEngine::getPosition(int who) {
     return guys[who].getFloatPos();
 }
@@ -85,7 +86,7 @@ bool PacEngine::loadMap(const std::string& path) {
     mTotalPills=0;
     //tempS
     guys[Pac].position=getPosFromNode(1,1);
-    guys[Pac].speed=3;
+    guys[Pac].speed=5;
 
     guys[0].direction=PacEntity::Right;
 
@@ -287,6 +288,36 @@ void PacEngine::updateGhost(int who) {
         //std::cout<<who<<"\n";
     }//ghost @ node
 }
+//blind
+void PacEngine::blindMode(int who) {
+
+//    if(guys[pac])
+    //std::cout<<who<<" "<<guys[who].scared<<std::endl;
+    if(guys[who].scared>0) {
+        --guys[who].scared;//go to 0, normal cooldown procedure
+    }
+    sf::Vector2i update=guys[who].getVectorFromDirection();
+    if(rand()%3&&fetchTileAt(guys[0].getNode(),sf::Vector2i())==Tunnel)
+        return;//30% chance to be paralyzed if pacman is in tunnel tile
+    for(int i=0; i<guys[who].speed; ++i) {
+        guys[who].position+=update;
+        if(guys[who].isAtNode())break;
+    }
+    if(guys[who].isAtNode()) {
+        //see if we respawned:
+        if(guys[who].scared==-1) {
+            if(guys[who].getNode()==startPos[who-1]/16) guys[who].scared=0;// /16 to get node number from pixel pos
+        }
+        //chose next move:
+        guys[who].target=getTarg(who);
+        guys[who].direction=getNextMove(guys[who]);
+        //std::cout<<who<<"\n";
+    }//ghost @ node
+}
+
+
+
+
 sf::Vector2i PacEngine::getTarg(int who) {
     if(guys[who].scared!=0) { //scare mode
 

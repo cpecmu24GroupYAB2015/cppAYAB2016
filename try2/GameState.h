@@ -26,7 +26,7 @@ namespace edy{
 			void drawPill(int x,int y);
 			void drawGhosts();
 			//vars:
-			sf::Text lives,score;
+			sf::Text lives,score, timer;
 			bool mapOk;
 			sf::Texture mAtlas;
 			sf::Sprite guys[5],leftEye,rightEye;

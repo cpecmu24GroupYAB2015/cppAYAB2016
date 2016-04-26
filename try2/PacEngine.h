@@ -7,6 +7,8 @@
 #include <deque>
 #include "config.h"
 
+#include <iostream>
+
 namespace sf{
 	class RenderTarget;
 }
@@ -45,6 +47,7 @@ namespace edy{
 			void resetPositions();
 			void checkPills();
 			void updateGhost(int who);
+			void blindMode(int who);
 			int fetchTileAt(sf::Vector2i pos,sf::Vector2i off);
 			PacEntity::eDirection getNextMove(sf::Vector2f pos,sf::Vector2i targ,PacEntity::eDirection cur);
 			sf::Vector2i getTarg(int who);

@@ -7,6 +7,8 @@
 #include "PauseState.h"
 #include "QuitState.h"
 
+#include <fstream>
+
 #include <iostream>
 #include "config.h"
 namespace edy {
@@ -33,15 +35,13 @@ GameState::GameState():currentMap(0),mScore(0),mPack(0x0) {
     guys[3].setColor(sf::Color::Yellow);
     guys[4].setColor(sf::Color::Cyan);
     mMapNames[0]="Level1.txt";
-    mMapNames[1]="Level2.txt";
-    mMapNames[2]="Level3.txt";
 }
 bool GameState::loadMap() {
     if(currentMap==3) {
         mPack->Manager->pushTop(new ScoreState(mScore));
         return false;
     }
-    if(!mEngine.loadMap(mMapNames[currentMap++])) {
+    if(!mEngine.loadMap(mMapNames[0])) {
         mPack->Manager->pushTop(new ErrState("Failed Map Loading"));
         return false;
     }
@@ -58,10 +58,13 @@ void GameState::run(core::PointerPack& pack) {
         score.setFont(*pack.Font);
         lives.setString("3UP");
         score.setString("Score:0");
+        timer.setString("Time:0");
+
         lives.setCharacterSize(32);
         score.setCharacterSize(32);
-        lives.setPosition(0.f,500.f);
+        lives.setPosition(0.f,scoreY);
         score.setPosition(80.f,scoreY);
+        timer.setPosition(180.f,scoreY);
     }
     sf::Time delta(sf::seconds(1.f/60.f)),stock;
     sf::Clock clock;
@@ -176,6 +179,8 @@ void GameState::drawGhosts() {
             if(mEngine.getScareStatus(i)==pac::PacEngine::Blinking) { //blinking color switches
                 guys[i].setColor(pacframe%2?sf::Color::White:sf::Color::Blue);
             }
+            //Blind mode
+            //if(mEngine.getScareStatus(i) == pac::PacEngine::)
         }
     }
 }
@@ -201,9 +206,9 @@ void GameState::drawAll() {
         }
     mPack->Window->draw(guys[0]);
     //fake pacmans on the right and left of map for tunnel smooth passing
-    guys[0].move(16.f*28.f,0.f);
+    guys[0].move(16.f*config::MapSizeX,0.f);
     mPack->Window->draw(guys[0]);
-    guys[0].move(-2.f*16.f*28.f,0.f);
+    guys[0].move(-2.f*16.f*config::MapSizeX,0.f);
     mPack->Window->draw(guys[0]);
     for(int i=1; i<=4; ++i) {
         if(mEngine.getScareStatus(i)!=pac::PacEngine::Dead) mPack->Window->draw(guys[i]);

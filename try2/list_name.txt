@@ -1,0 +1,7 @@
+1, nano: 0
+2, nano: 0
+3, nano mota: 0
+4, nano mota: 0
+5, nano mota: 0
+6, nano mota2: 0
+7, nano mota3: 0

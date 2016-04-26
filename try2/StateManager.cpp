@@ -4,8 +4,13 @@
 namespace edy {
 namespace core {
 StateManager::StateManager() {
+
     int wgetx = (448*config::MapSizeX)/28;
     int wgety = (576*config::MapSizeY)/31;
+    /*if(wgetx<448||wgety<576) {
+        wgetx = 448;
+        wgety = 576;
+    }*/
     mWindow.create(sf::VideoMode(wgetx,wgety),"Copy&Paste Project",sf::Style::Close|sf::Style::Titlebar);//448 576
     //mWindow.setFramerateLimit(60);//60 fps max
     mFont.loadFromFile("DejaVuSans.ttf");

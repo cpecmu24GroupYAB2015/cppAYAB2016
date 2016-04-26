@@ -12,6 +12,7 @@ private:
     sf::Texture BackgroundTexture;
     sf::Sprite windowBg;
     sf::Text mTitle,mPlay,mHigh,mMul,mQuit;
+    sf::Text mSave, mLoad;
 };
 }
 }

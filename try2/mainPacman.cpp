@@ -7,8 +7,16 @@
 #include "config.h"
 #include "MapGen.h"
 
+#include "fio.h"
+
 int main() {
-    edy::core::StateManager app;
+
+    FileIO fn("nano mota3");
+    cout << fn.getNameList();
+    //cout << fn.hasName("sara");
+    //fn.addName("sara",5);
+    //fn.addName("baba",5);
+    /*edy::core::StateManager app;
     app.pushTop(new edy::state::MenuState);
-    app.gameRun();
+    app.gameRun();*/
 }

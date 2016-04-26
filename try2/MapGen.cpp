@@ -77,11 +77,15 @@ void MapGen::writeBoxLine(int **t, int x1, int y1, int w, int h, int sm[]) {
 void MapGen::makePattBox(int **t, int sm[]) {
     int MaxSize;
     int numx=0,numy=0;
+    /*while(numx%4!=0){
+        numx++;
+        cout << numx;
+    }*/
 
     if(sm[0]*sm[1] > 20) {
-        numx = sm[0]/4;
-        numy = sm[1]/4;
-        MaxSize = (numx+numy)/2;
+        numx = sm[0]/4.0;
+        numy = sm[1]/4.0;
+        MaxSize = (numx+numy)/2.0;
     } else {
         MaxSize = 4;
     }
@@ -118,7 +122,7 @@ void MapGen::drawBorder(int **t, int sm[]) {
                 t[i][j] = 3;
         }
     }
-    int n=rand()%sm[0];
+    int n=1+rand()%sm[0]-1;
     t[n][0] = 7;
     t[n][sm[1]-1] = 7;
 
@@ -131,6 +135,12 @@ MapGen::MapGen(){
     sm[0] = config::MapSizeY;
 
     int **t=new int*[sm[0]];
+
+    if(remove("Level1.txt")==1){
+        cout << "Remvoed";
+    }else{
+        cout < "err Removed";
+    }
     initialze(t, sm);
 
 

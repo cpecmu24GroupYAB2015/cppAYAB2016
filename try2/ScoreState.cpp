@@ -2,13 +2,14 @@
 #include "StateManager.h"
 #include <fstream>
 #include <sstream>
+#include<iostream>
 #include <SFML/Window/Event.hpp>
 #include "EEToString.h"
 namespace edy {
 namespace state {
 ScoreState::ScoreState(int score):mWritingTo(-1),mScore(score) {
     mLines.resize(10);
-    std::ifstream file("High.txt");
+    /*std::ifstream file("High.txt");
     int tmpscores[10];
     for(int i=0; i<10; ++i) { //wypelniamy liste
         mLines[i].setCharacterSize(20);
@@ -32,7 +33,8 @@ ScoreState::ScoreState(int score):mWritingTo(-1),mScore(score) {
     mLines.resize(10);
     for(int i=0; i<10; ++i) {
         mLines[i].setPosition(100.f,25.f+i*25.f);
-    }
+    }*/
+    std::cout << "sss";
 }
 ScoreState::~ScoreState() {
     std::ofstream file("High.txt");
