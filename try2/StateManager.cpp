@@ -11,9 +11,9 @@ StateManager::StateManager() {
         wgetx = 448;
         wgety = 576;
     }*/
-    mWindow.create(sf::VideoMode(wgetx,wgety),"Copy&Paste Project",sf::Style::Close|sf::Style::Titlebar);//448 576
+    mWindow.create(sf::VideoMode(wgetx,wgety),config::str_mTitle,sf::Style::Close|sf::Style::Titlebar);//448 576
     //mWindow.setFramerateLimit(60);//60 fps max
-    mFont.loadFromFile("DejaVuSans.ttf");
+    mFont.loadFromFile(config::fonts);
     mPack.Font=&mFont;
     mPack.Manager=this;
     mPack.Window=&mWindow;

@@ -6,7 +6,11 @@
 #include <vector>
 
 #include "config.h"
+#include "MapGen.h"
 namespace {
+
+
+
 bool enterable(unsigned char number) {
     if (number==edy::pac::PacEngine::Wall)
         return false;
@@ -72,10 +76,13 @@ int ghostKillPts(int& number) {
 }
 namespace edy {
 namespace pac {
-PacEngine::PacEngine():mLives(3),mCherryCountDown(0) {
 
+
+PacEngine::PacEngine():mLives(config::maxLive),mCherryCountDown(0) {
+    for(int i=0; i<config::MapSizeX;i++){
+        mMap[i] = new unsigned char [config::MapSizeY];
+    }
 }
-
 sf::Vector2f PacEngine::getPosition(int who) {
     return guys[who].getFloatPos();
 }
@@ -84,6 +91,7 @@ float PacEngine::getRotation(int who) {
 }
 bool PacEngine::loadMap(const std::string& path) {
     mTotalPills=0;
+    MapGen mapgen;
     //tempS
     guys[Pac].position=getPosFromNode(1,1);
     guys[Pac].speed=5;

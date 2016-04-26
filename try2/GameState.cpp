@@ -10,12 +10,16 @@
 #include <fstream>
 
 #include <iostream>
+#include <string>
 #include "config.h"
+#include <sstream>
+
+using namespace std;
 namespace edy {
 namespace state {
 GameState::GameState():currentMap(0),mScore(0),mPack(0x0) {
     pacframe=0;
-    mAtlas.loadFromFile("testpac.tga");
+    mAtlas.loadFromFile(config::elemntSpr);
     mAtlas.setRepeated(false);
     //mAtlas.setSmooth(true);
     for(int i=0; i<=4; ++i)    {
@@ -37,10 +41,10 @@ GameState::GameState():currentMap(0),mScore(0),mPack(0x0) {
     mMapNames[0]="Level1.txt";
 }
 bool GameState::loadMap() {
-    if(currentMap==3) {
+    /*if(currentMap==3) {
         mPack->Manager->pushTop(new ScoreState(mScore));
         return false;
-    }
+    }*/
     if(!mEngine.loadMap(mMapNames[0])) {
         mPack->Manager->pushTop(new ErrState("Failed Map Loading"));
         return false;
@@ -56,7 +60,13 @@ void GameState::run(core::PointerPack& pack) {
         mapOk=loadMap();
         lives.setFont(*pack.Font);
         score.setFont(*pack.Font);
-        lives.setString("3UP");
+        //string nnn = to_string(config::maxLive);
+
+        //Patch Number  to string
+        ostringstream stm ;
+        stm << config::maxLive ;
+
+        lives.setString(stm.str().append("UP"));
         score.setString("Score:0");
         timer.setString("Time:0");
 
@@ -71,6 +81,7 @@ void GameState::run(core::PointerPack& pack) {
     sf::Event seve;
     pac::PacEvent peve;
     mAnimClock.restart();
+    int kepScore ;
     while(mapOk)    {
         while(pack.Window->pollEvent(seve)) {
             if(seve.type==sf::Event::Closed) {
@@ -123,7 +134,9 @@ void GameState::run(core::PointerPack& pack) {
                 score.setString("Score: "+sup::toString(mScore));
                 break;
             }
-        }//peve
+        }
+
+        //peve
         pack.Window->clear();
         stock+=clock.restart();
 

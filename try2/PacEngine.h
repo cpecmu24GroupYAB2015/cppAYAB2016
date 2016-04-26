@@ -38,7 +38,8 @@ namespace edy{
 			void setPacDirection(PacEntity::eDirection direction);
 			void makeWallsMap(sf::RenderTarget& target);
 			//16x16 tiles, top 3 and bottom 2 rows go for texts,array in interface=ugly
-			unsigned char mMap[config::MapSizeX][config::MapSizeY];
+			//unsigned char mMap[config::MapSizeX][config::MapSizeY];
+			unsigned char **mMap = new unsigned char *[config::MapSizeX];
 			ScareStatus getScareStatus(int who)const;
 		private:
 			//methods:

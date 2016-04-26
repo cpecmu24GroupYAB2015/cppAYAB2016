@@ -11,7 +11,8 @@ namespace edy{
 			virtual ~ScoreState();
 			virtual void run(core::PointerPack& pack);
 		private:
-			std::vector<sf::Text> mLines;
+			std::vector<sf::Text> mLines,mLine;
+			sf::Text mScoreTitle;
 			int mWritingTo,mScore;
 			std::string mWritingLine;
 

@@ -5,6 +5,7 @@
 #include "GameState.h"
 #include "MapGen.h"
 #include <SFML/Graphics.hpp>
+#include "config.h"
 namespace edy {
 namespace state {
 void MenuState::run(core::PointerPack& pack) {
@@ -15,7 +16,7 @@ void MenuState::run(core::PointerPack& pack) {
     mHigh.setFont(*pack.Font);
     mQuit.setFont(*pack.Font);
 
-    mTitle.setString("Copy & Paste\n Project");
+    mTitle.setString(config::str_mTitle);
     mPlay.setString("[P]lay Single!");
     mMul.setString("[M]ulti Player");
     mHigh.setString("[H]igh Scores!");

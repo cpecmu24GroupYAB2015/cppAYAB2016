@@ -77,8 +77,9 @@
 		<Unit filename="StateManager.h" />
 		<Unit filename="cb.bmp" />
 		<Unit filename="config.h" />
+		<Unit filename="fio.cpp" />
+		<Unit filename="fio.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="mainPacman.cpp" />
 		<Unit filename="testpac.tga" />
 		<Unit filename="try2.cbp" />
 		<Unit filename="try2.depend" />

@@ -7,7 +7,7 @@
 using namespace std;
 class FileIO {
 public:
-    FileIO(string name);
+    FileIO();
     void getFile();
     void setNameList(vector<string> &listName,vector<int> &listID,vector<int> &listScore);
     bool findNamea(vector<string>& );
@@ -19,9 +19,10 @@ public:
     vector<int> getIdList();
     vector<int> getScoreList();
 
-    vector<int> findMaxScore();
+    vector<int> findMaxScore(vector<int> &);
+    void bubleSort(vector<int> &data, vector<string> &name);
+    void show(vector<int> &,vector<string> &name);
 
-private:
     vector<string> nL;
     vector<int> idL, scL;
 

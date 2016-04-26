@@ -44,6 +44,7 @@ namespace edy{
 			virtual void run(core::PointerPack& pack)
 			{
 				sf::Text text("Paused, press p to resume",*pack.Font);
+				text.setPosition(120.f,50.f);
 				sf::Event eve;
 				while(1)
 				{

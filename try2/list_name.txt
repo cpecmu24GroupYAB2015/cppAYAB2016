@@ -1,7 +1,7 @@
-1, nano: 0
-2, nano: 0
-3, nano mota: 0
-4, nano mota: 0
-5, nano mota: 0
-6, nano mota2: 0
-7, nano mota3: 0
+1, nano mota3: 0
+1, asd: 99
+1, asdasdad: 12
+1, ddd: 95
+1, ddwwww: 15
+1, qq eee: 56
+1, Player90: 90

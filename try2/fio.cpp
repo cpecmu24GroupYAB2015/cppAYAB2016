@@ -6,9 +6,10 @@
 #include <cctype>
 using namespace std;
 
-FileIO::FileIO(string name) {
-    cout << "create "<< name << ".txt\n";
-    addNameToDB(name, 0);
+FileIO::FileIO() {
+    cout << "\ncreate Database Success!\n";
+    setNameList(nL,idL,scL);
+    cout << "Inititalize Complete\n";
 }
 
 void FileIO::addName(string name, int score) {
@@ -18,11 +19,12 @@ void FileIO::addName(string name, int score) {
 
 void FileIO::addNameToDB(string name,int score) {
     fstream fn("list_name.txt",ios::app);
-    cout << nL.size() << "e\n";
+    cout << "NameList Size : "<< nL.size() << "\n";
     setNameList( nL,idL,scL);
-    cout << hasName(nL, name);
+    cout << "Last ID : " << hasName(nL, name) << endl;
+
     if(hasName(nL, name) == -1) {
-        fn << nL.size()+1 << ", " << name << ": "<< score << endl;
+        fn << 1 << ", " << name << ": "<< score << endl;
     }
     fn.close();
 }
@@ -33,7 +35,7 @@ void FileIO::setNameList( vector<string> &listName,vector<int> &listID,vector<in
     int id,score;
     char name[999];
     while(getline(fa, textline)) {
-        cout << textline <<"f"<<endl;
+        cout << textline <<endl;
         sscanf(textline.c_str(), "%d, %[^:]: %d", &id, name, &score );
         listName.push_back(name);
         listID.push_back(id);
@@ -52,18 +54,43 @@ int FileIO::hasName(vector<string> &listName, string name) {
     else return -1;
 }
 
-vector<int> FileIO::findMaxScore(){
-    return sort(getScoreList().begin(),getScoreList().end());
+
+void FileIO::bubleSort(vector<int> &score, vector<string> &name) {
+int n = score.size();
+    for (int c = 0 ; c < ( n - 1 ); c++) {
+        for (int d = 0 ; d < n - c - 1; d++) {
+            if (score[d] < score[d+1]) { /* For decreasing order use < */
+                swap(score[d],score[d+1]);
+                swap(name[d],name[d+1]);
+            }
+        }
+    }
 }
 
-vector<string> FileIO::getNameList(){
+
+void FileIO::show(vector<int> &data, vector<string> &name){
+    cout << "\nShow List Data\n";
+    for(int i=0; i<data.size();i++){
+        cout << data[i] << " " << name[i] <<"\n";
+    }
+}
+
+bool moreThan (int i,int j) { return (i>j); }
+
+
+vector<int> FileIO::findMaxScore(vector<int> &data)  {
+    sort(data.begin(),data.begin()+6,moreThan);
+}
+
+
+vector<string> FileIO::getNameList() {
     return nL;
 }
 
-vector<int> FileIO::getIdList(){
+vector<int> FileIO::getIdList() {
     return idL;
 }
 
-vector<int> FileIO::getScoreList(){
+vector<int> FileIO::getScoreList() {
     return scL;
 }
