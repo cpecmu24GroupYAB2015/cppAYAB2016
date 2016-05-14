@@ -93,8 +93,8 @@ bool PacEngine::loadMap(const std::string& path) {
     mTotalPills=0;
     MapGen mapgen;
     //tempS
-    guys[Pac].position=getPosFromNode(1,1);
-    guys[Pac].speed=5;
+    guys[Pac].position=getPosFromNode(16,16);
+    guys[Pac].speed=config::pacSpeed;
 
     guys[0].direction=PacEntity::Right;
 

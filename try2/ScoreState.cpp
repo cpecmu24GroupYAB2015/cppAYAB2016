@@ -7,6 +7,7 @@
 #include "EEToString.h"
 
 #include "fio.h"
+#include "config.h"
 
 using namespace std;
 namespace edy {
@@ -15,7 +16,7 @@ ScoreState::ScoreState(int score):mWritingTo(-1),mScore(score) {
     mLines.resize(10);
     mLine.resize(10);
 
-    mScoreTitle.setString("Hall Of Frame");
+    mScoreTitle.setString(config::mScoreTitleTex);
     mScoreTitle.setPosition(100.f,25.f);
     mScoreTitle.setCharacterSize(46);
 
@@ -41,7 +42,7 @@ ScoreState::ScoreState(int score):mWritingTo(-1),mScore(score) {
         mLines[i].setString(sup::toString(fn.scL[i]));
         mLine[i].setString(sup::toString(sup::toString(fn.nL[i])));
     }
-    cout << mScore;
+    //cout << mScore;
 
 
     /*std::ifstream file("High.txt");

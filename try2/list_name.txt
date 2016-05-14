@@ -4,4 +4,6 @@
 1, ddd: 95
 1, ddwwww: 15
 1, qq eee: 56
-1, Player90: 90
+1, Player80: 80
+1, Player10: 10
+1, Player1450: 1450

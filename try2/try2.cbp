@@ -51,6 +51,7 @@
 			<Add library="dxguid" />
 			<Add directory="C:/sfml/lib" />
 		</Linker>
+		<Unit filename="../console/Fio.h" />
 		<Unit filename="DejaVuSans.ttf" />
 		<Unit filename="EEToString.h" />
 		<Unit filename="ErrState.h" />

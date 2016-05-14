@@ -41,12 +41,12 @@ GameState::GameState():currentMap(0),mScore(0),mPack(0x0) {
     mMapNames[0]="Level1.txt";
 }
 bool GameState::loadMap() {
-    /*if(currentMap==3) {
+    if(currentMap==3) {
         mPack->Manager->pushTop(new ScoreState(mScore));
         return false;
-    }*/
+    }
     if(!mEngine.loadMap(mMapNames[0])) {
-        mPack->Manager->pushTop(new ErrState("Failed Map Loading"));
+        mPack->Manager->pushTop(new ErrState("Fuck The map Refresh NOW!! "));
         return false;
     }
     return true;

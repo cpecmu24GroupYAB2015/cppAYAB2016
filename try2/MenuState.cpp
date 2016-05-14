@@ -88,7 +88,7 @@ void MenuState::run(core::PointerPack& pack) {
             }
         }
         pack.Window->clear();
-        pack.Window->clear(sf::Color(5,220,15));
+        pack.Window->clear(sf::Color(5,120,15));
         pack.Window->draw(windowBg);
         pack.Window->draw(mTitle);
         pack.Window->draw(mPlay);

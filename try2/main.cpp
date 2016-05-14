@@ -6,9 +6,12 @@
 #include <algorithm>
 
 #include "fio.h"
+#include "Server.h"
 using namespace std;
 
 int main() {
+
+
 
     /*FileIO fn;
     fn.addNameToDB("asd",99);
