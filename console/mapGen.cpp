@@ -58,7 +58,7 @@ void MapGen::setColor(int& ptr) {
 
 void MapGen::initialze(int **t, int sm[]) {
     for(int i=0; i<sm[0]; i++) {
-        t[i]=new int[sm[1]];
+        //t[i]=new int[sm[1]];
         for(int j=0; j<sm[1]; j++)
             if(i==0||i==sm[0]-1 || j==0 || j==sm[1]-1) {
                 t[i][j] = 1;
@@ -127,9 +127,10 @@ void MapGen::makePattBox(int **t, int sm[]) {
 }
 
 void MapGen::delStrack(int **ptr, int sm[]) {
-    for(int i=0; i<sm[0]; i++) {
-      delete [] ptr[i];
-    }delete[] ptr;
+    /*for(int i=0; i<sm[0]; i++) {
+        delete [] ptr[i];
+    }*/
+    delete[] ptr;
 
 
 
@@ -176,6 +177,11 @@ void MapGen::basic(int mSx, int mSy) {
     sm[1] = mSx;
     sm[0] = mSy;
 
+    t=new int*[mSx];
+    for(int i=0; i<mSx; i++) {
+        t[i]=new int[mSy];
+    }
+
 
     if(remove("Level.txt")==1) {
         cout << "Remvoed";
@@ -184,7 +190,7 @@ void MapGen::basic(int mSx, int mSy) {
     }
     initialze(t, sm);
 
-    makePattBox(t, sm);
+    /*makePattBox(t, sm);
     //cout << "Make Maze Pattern\n";
     playerRes(t, sm, 5);
     playerRes(t, sm, 2);
@@ -206,8 +212,8 @@ void MapGen::basic(int mSx, int mSy) {
     drawBorder(t, sm);
     writeFile(t, sm);
     //showMaze(t, sm);
-    //cout << "\nMap Generate Completed\n";
-    delStrack(t, sm);
+    //cout << "\nMap Generate Completed\n";*/
+    //delStrack(t, sm);
 }
 
 MapGen::MapGen() {

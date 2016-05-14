@@ -9,7 +9,7 @@ using namespace std;
 class MapGen {
 public:
     int sm[2] = {0,0};
-    int **t=new int*[sm[0]];
+    int **t;
     MapGen();
     MapGen( int mSx, int mSy);
     void showMaze(int **ptr, int sm[]);
