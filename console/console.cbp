@@ -51,24 +51,36 @@
 			<Add library="dxguid" />
 			<Add directory="C:/sfml/lib" />
 		</Linker>
-		<Unit filename="Fio.cpp" />
-		<Unit filename="Fio.h" />
 		<Unit filename="cb.bmp" />
 		<Unit filename="cls.cpp" />
 		<Unit filename="cls.h" />
 		<Unit filename="config.h" />
+		<Unit filename="cons.cpp" />
+		<Unit filename="display.cpp" />
+		<Unit filename="display.h" />
 		<Unit filename="engine.cpp" />
 		<Unit filename="engine.h" />
+		<Unit filename="engine_game.cpp" />
+		<Unit filename="engine_multi.cpp" />
+		<Unit filename="engine_rep.cpp" />
+		<Unit filename="loadMap.cpp" />
+		<Unit filename="loadMap.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="mapGen.cpp" />
 		<Unit filename="mapGen.h" />
 		<Unit filename="menuFunc.cpp" />
 		<Unit filename="menuFunc.h" />
+		<Unit filename="note.txt" />
+		<Unit filename="saveName.cpp" />
+		<Unit filename="saveName.h" />
 		<Unit filename="serve.cpp" />
 		<Unit filename="serve.h" />
+		<Unit filename="step.txt" />
 		<Unit filename="stringOpreator.h" />
 		<Unit filename="textColor.cpp" />
 		<Unit filename="textColor.h" />
+		<Unit filename="timer.cpp" />
+		<Unit filename="timer.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

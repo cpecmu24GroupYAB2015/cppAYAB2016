@@ -3,10 +3,18 @@
 class Menu{
 public:
 
-enum x{};
+
     Menu();
     void loadUI();
     void run();
     int mList();
+
+    int loadMenuStd();
+
+    // Mode
+    void loadSingle();
+    void loadMulti();
+    void loadHigh();
+    void loadCreate();
 };
 #endif

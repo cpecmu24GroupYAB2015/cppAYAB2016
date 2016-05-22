@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1463312686 source:c:\users\ather\documents\github\cppayab2016\textglobal\e.cpp
+	<iostream>
+
+1463312571 source:c:\users\ather\documents\github\cppayab2016\textglobal\main.cpp
+	<iostream>
+	"e.h"
+
+1463309791 c:\users\ather\documents\github\cppayab2016\textglobal\e.cpp
+
+1463312487 source:c:\users\ather\documents\github\cppayab2016\textglobal\e.h
+	<iostream>
+
+1463312487 c:\users\ather\documents\github\cppayab2016\textglobal\e.h
+	<iostream>
+

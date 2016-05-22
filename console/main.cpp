@@ -9,35 +9,55 @@
 #include "mapGen.h"
 #include "config.h"
 
+#include "serve.h"
+
 #include <cstdlib>
 #include <ctime>
 #include <ctime>
 
+#include "loadMap.h"
+#include "display.h"
+
+#include "conio.h"
+
+extern int mSizeX;
+extern int mSizeY;
 
 
 using namespace std; // std::cout, std::cin
+void SearchWeb( string word )
+{
+    string base_URL = "http://www.bing.com/search?q=";
+    string search_URL = "dummy";
+    search_URL = base_URL + word;
 
-int main(){
-srand(time(0));
-    Menu menu;
-    Engine engine;
+    cout << "Searching for: \"" << word << "\"\n";
+
+    ShellExecuteA(NULL, "open", search_URL.c_str(), NULL, NULL, SW_SHOWNORMAL);
+}
+
+int main() {
     srand(time(0));
-    MapGen m(config::MapSizeX,config::MapSizeY);
-    int i=1;
-    while(1){
-        if(i%2==0){
-            config::MapSizeX = 20+rand()%30;
-            config::MapSizeY = 20+rand()%30;
-            m.basic(config::MapSizeX,config::MapSizeY);
-        }
-        i++;
-        cout << config::MapSizeX << endl;
-        cout << config::MapSizeY << endl;
-        m.showMaze(m.t,m.sm);
+    Menu menu;
 
-        Sleep(1000);
-        system("cls");
+    while(1){
+        menu.loadMenuStd();
     }
+
+
+    cout << "ddd";
+
+
+
+
+    /*while(1) {
+        m.basic(config::MapSizeX,config::MapSizeY);
+        i++;
+        m.showMaze(m.t,config::MapSizeX,config::MapSizeY);
+        m.setCursorPositiona(0,0);
+        cout << "x";
+        Sleep(100);
+    }*/
 
 
 }

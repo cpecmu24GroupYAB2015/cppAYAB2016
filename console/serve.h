@@ -11,7 +11,17 @@ using namespace std;
 
 class Serv{
     public:
-    sf::Http connect(string );
+    int ping=0;
+    string connect(string);
+    void createRoom(int );
+    void joinRoom(int );
+
+    //Data Sender
+    void sendPos(int , int);
+    void sendMao(string);
+
+    void test();
+
 };
 
 #endif // SERVER_H
